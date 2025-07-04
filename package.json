@@ -1,4 +1,5 @@
 {
+  "name": "used-car-listing",
   "devDependencies": {
     "concurrently": "^9.2.0"
   },
