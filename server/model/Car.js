@@ -3,7 +3,6 @@ const {Schema} = mongoose;
 
 
 const CarSchema = new Schema({
-    _id: mongoose.Schema.Types.ObjectId,
     "brand": {
         type: String,
         required: [true, "Merek mobil harus diisi"],
@@ -16,6 +15,7 @@ const CarSchema = new Schema({
     },
     "stock": {
         type: Number,
+        required: [true, "Stok mobil harus diisi"],
         min: [0, "Stok tidak boleh kurang dari 0!"]
     },
     "price": {
