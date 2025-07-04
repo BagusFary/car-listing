@@ -12,7 +12,7 @@ router.get('/list', async (req, res) => {
     try {
         
         const data = await Car.find();
-        res.status(201).json({
+        res.status(200).json({
             message: "Sukses mengambil data mobil!",
             data: data
         });
