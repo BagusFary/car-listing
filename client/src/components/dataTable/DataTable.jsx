@@ -29,6 +29,7 @@ import { Button } from "../ui/button";
 
 import { Input } from "@/components/ui/input";
 import { useState } from "react";
+import { useEffect } from "react";
 
 
 
@@ -38,6 +39,24 @@ export const DataTable = ({columns, data}) => {
   const [sorting, setSorting] = useState([]);
   const [columnFilters, setColumnFilters] = useState([]);
   const [searchMode, setSearchMode] = useState(1);
+
+  useEffect(() => {
+    const columns = table.getAllColumns();
+
+    console.log(columns);
+
+    columns.forEach((col) => {
+      const colId = col.id;
+      if (
+        (searchMode === 1 && colId !== "brand") ||
+        (searchMode === 2 && colId !== "type") ||
+        (searchMode === 3 && colId !== "price")
+      ) {
+        col.setFilterValue(""); 
+      }
+    });
+  }, [searchMode]);
+
 
   const table = useReactTable({
     data,
