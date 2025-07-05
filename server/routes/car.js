@@ -8,7 +8,8 @@ const checkIdType = mongoose.Types.ObjectId;
 
 
 
-router.get('/list', async (req, res) => {
+router.get('/', async (req, res) => {
+
     try {
         
         const data = await Car.find();
@@ -23,6 +24,7 @@ router.get('/list', async (req, res) => {
         res.status(status).json(body);
         
     }
+    
 });
 
 router.get('/:id', async (req, res) => {

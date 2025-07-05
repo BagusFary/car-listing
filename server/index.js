@@ -19,12 +19,14 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true })); 
 
 
-app.use('/car', CarRouter);
-
 // Activate CORS for Frontend  accessing API
 app.use(cors({
     origin: "http://localhost:5173"
 }));
+
+app.use('/car', CarRouter);
+
+
 
 
 app.listen(process.env.EXPRESS_PORT);
