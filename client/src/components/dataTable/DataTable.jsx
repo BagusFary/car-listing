@@ -43,8 +43,6 @@ export const DataTable = ({columns, data}) => {
   useEffect(() => {
     const columns = table.getAllColumns();
 
-    console.log(columns);
-
     columns.forEach((col) => {
       const colId = col.id;
       if (
