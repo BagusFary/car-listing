@@ -40,22 +40,6 @@ export const DataTable = ({columns, data}) => {
   const [columnFilters, setColumnFilters] = useState([]);
   const [searchMode, setSearchMode] = useState(1);
 
-  useEffect(() => {
-    const columns = table.getAllColumns();
-
-    columns.forEach((col) => {
-      const colId = col.id;
-      if (
-        (searchMode === 1 && colId !== "brand") ||
-        (searchMode === 2 && colId !== "type") ||
-        (searchMode === 3 && colId !== "price")
-      ) {
-        col.setFilterValue(""); 
-      }
-    });
-  }, [searchMode]);
-
-
   const table = useReactTable({
     data,
     columns,
@@ -68,6 +52,21 @@ export const DataTable = ({columns, data}) => {
       columnFilters,
     },
   });
+
+  useEffect(() => {
+
+    table.getAllColumns().forEach((col) => {
+
+      if(
+        (searchMode == 1 && col.id !== "brand") ||
+        (searchMode == 2 && col.id !== "type") ||
+        (searchMode == 3 && col.id !== "price") 
+      ) {
+        col.setFilterValue("");
+      }
+    });
+
+  }, [searchMode]);
 
   return (
     <div>
