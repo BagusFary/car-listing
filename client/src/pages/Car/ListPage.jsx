@@ -3,6 +3,7 @@ import { useEffect } from "react";
 import { DataTable } from "@/components/dataTable/DataTable";
 import { generateColumns } from "@/components/dataTable/columns";
 import { LoaderPinwheel } from "lucide-react";
+import { useState } from "react";
 
 
 
@@ -10,11 +11,24 @@ export const ListPage = () => {
 
     const {car, fetchCar, isLoading, isError} = useFetchCarApi();
 
-    const columns = generateColumns(fetchCar);
+    const [columns, setColumns] = useState([]);
+
 
     useEffect(() => {
         fetchCar();
     },[]);
+
+    useEffect(() => {
+        
+        const loadColumns = async () => {
+            const getColumns = await generateColumns(fetchCar);
+
+            setColumns(getColumns);
+        }
+
+        loadColumns();
+
+    },[fetchCar]);
 
     return(
         <>
@@ -24,7 +38,7 @@ export const ListPage = () => {
                     isLoading && <LoaderPinwheel className="animate-spin" />
                 }
                 {
-                    !isLoading && (
+                    !isLoading && columns.length > 0 && (
                         <DataTable fetchCar={fetchCar} columns={columns} data={car} />
                     )
                 }

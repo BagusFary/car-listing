@@ -10,10 +10,25 @@ export const useFetchCarApi = () => {
 
     const fetchCar = async (id) => {
 
+        const credentials = JSON.parse(localStorage.getItem("credentials"));
+
+        console.log(credentials);
+
+        // Lanjut implementasi get credential di semua Hook API
+
         try {
 
             setIsLoading(true);
-            const response = await axiosInstance.get(`car/${id ?? ''}`);
+            const response = await axiosInstance.get(`car/${id ?? ''}`,
+                {
+                    headers: {
+                        "Authorization" : `Bearer ${credentials.token}`
+                    }
+                }
+            );
+
+            console.log(response);
+
             setCar(response.data.data);
             setIsError('');
 

@@ -36,6 +36,8 @@ import { useEffect } from "react";
 
 export const DataTable = ({columns, data}) => {
 
+  
+
   const [sorting, setSorting] = useState([]);
   const [columnFilters, setColumnFilters] = useState([]);
   const [searchMode, setSearchMode] = useState(1);
@@ -65,6 +67,7 @@ export const DataTable = ({columns, data}) => {
         col.setFilterValue("");
       }
     });
+
 
   }, [searchMode]);
 
