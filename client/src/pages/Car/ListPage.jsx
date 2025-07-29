@@ -16,20 +16,18 @@ export const ListPage = () => {
 
     useEffect(() => {
         fetchCar();
-    },[]);
 
-    useEffect(() => {
-        
-        const loadColumns = async () => {
-            const getColumns = await generateColumns(fetchCar);
+        const loadColumns = () => {
 
+            const getColumns = generateColumns(fetchCar);
             setColumns(getColumns);
+
         }
 
         loadColumns();
 
-    },[fetchCar]);
-
+    },[]);
+    
     return(
         <>
             <div className="h-screen w-full flex flex-col items-center gap-5 mt-10 mb-15">

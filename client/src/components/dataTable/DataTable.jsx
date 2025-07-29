@@ -66,6 +66,7 @@ export const DataTable = ({columns, data}) => {
       ) {
         col.setFilterValue("");
       }
+
     });
 
 
@@ -172,6 +173,7 @@ export const DataTable = ({columns, data}) => {
         <h1 className="text-2xl font-semibold">{`${table.getState().pagination.pageIndex + 1} of ${table.getPageCount()} Page`}</h1>
         <div className="flex gap-2">
           <Button
+            className={"cursor-pointer"}
             variant="outline"
             size="sm"
             onClick={() => table.previousPage()}
@@ -180,6 +182,7 @@ export const DataTable = ({columns, data}) => {
             Previous
           </Button>
           <Button
+            className={"cursor-pointer"}
             variant="outline"
             size="sm"
             onClick={() => table.nextPage()}

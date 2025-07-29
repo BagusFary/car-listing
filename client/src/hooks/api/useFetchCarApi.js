@@ -12,10 +12,6 @@ export const useFetchCarApi = () => {
 
         const credentials = JSON.parse(localStorage.getItem("credentials"));
 
-        console.log(credentials);
-
-        // Lanjut implementasi get credential di semua Hook API
-
         try {
 
             setIsLoading(true);
@@ -26,8 +22,6 @@ export const useFetchCarApi = () => {
                     }
                 }
             );
-
-            console.log(response);
 
             setCar(response.data.data);
             setIsError('');

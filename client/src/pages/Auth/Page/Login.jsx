@@ -8,12 +8,11 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from "react-hook-form";
 import { useState } from "react";
 import { Checkbox } from "@/components/ui/checkbox";
-import { useRegisterUserApi } from "@/hooks/api/useRegisterUserApi";
 import toast from "react-hot-toast";
 import { Loader2Icon } from "lucide-react";
 import { useEffect } from "react";
 import { loginSchema } from "@/validators/authSchema";
-
+import { useLoginUserApi } from "../../../hooks/api/useLoginUserApi";
 
 export const Login = () => {
     
@@ -21,15 +20,17 @@ export const Login = () => {
         resolver: zodResolver(loginSchema)
     });
 
-    const {isLoading, response, isError, registerUserApi} = useRegisterUserApi();
+    const {isLoading, response, isError, loginUserApi} = useLoginUserApi();
 
     let navigate = useNavigate();
 
     const handleLogin = async (data) => {
 
+        console.log('masuk handle login');
+
         try {
             
-            await registerUserApi(data);
+            await loginUserApi(data);
             toast.success("Login berhasil!, Anda akan diarahkan ke halaman daftar Mobil");
 
             setTimeout(() => {
@@ -57,8 +58,8 @@ export const Login = () => {
     const [isVisible, setIsVisible] = useState(false);
     
     useEffect(() => {
-
-        if(response && response.status === 201){
+        
+        if(response && response.status === 200){
             localStorage.setItem('credentials', JSON.stringify(response.data));
         }
 
